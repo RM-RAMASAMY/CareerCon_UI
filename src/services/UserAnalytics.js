@@ -16,7 +16,11 @@ defaults.plugins.title.color = "black";
 export const UserAnalytics = () => {
   return (
     <div className="App">
-      <div className="dataCard revenueCard">
+      <div className="dataCard revenueCard"
+      style={{  
+        height: `500px` 
+      }}
+      >
         <Line
           data={{
             labels: revenueData.map((data) => data.label),
@@ -24,8 +28,8 @@ export const UserAnalytics = () => {
               {
                 label: "Revenue",
                 data: revenueData.map((data) => data.revenue),
-                backgroundColor: "#064FF0",
-                borderColor: "#064FF0",
+                backgroundColor: "#0D3F82",
+                borderColor: "#0D3F82",
               },
               {
                 label: "Cost",
@@ -38,7 +42,7 @@ export const UserAnalytics = () => {
           options={{
             elements: {
               line: {
-                tension: 0.5,
+                tension: 0,
               },
             },
             plugins: {
@@ -49,64 +53,71 @@ export const UserAnalytics = () => {
           }}
         />
       </div>
-
-      <div className="dataCard customerCard">
-        <Bar
-          data={{
-            labels: sourceData.map((data) => data.label),
-            datasets: [
-              {
-                label: "Count",
-                data: sourceData.map((data) => data.value),
-                backgroundColor: [
-                  "rgba(43, 63, 229, 0.8)",
-                  "rgba(250, 192, 19, 0.8)",
-                  "rgba(253, 135, 135, 0.8)",
-                ],
-                borderRadius: 5,
-              },
+      <div className="chartsContainer" style={{ display: 'flex', justifyContent: 'space-between' }}>
+  <div className="dataCard categoryCard"
+    style={{  
+      height: `500px`, 
+      width: `500px`,
+      position: 'relative',
+      marginRight: '20px' // Optional: Add some space between the charts
+    }}
+  >
+    <Bar
+      data={{
+        labels: sourceData.map((data) => data.label),
+        datasets: [
+          {
+            label: "Count",
+            data: sourceData.map((data) => data.value),
+            backgroundColor: [
+              "rgba(43, 63, 229, 0.8)",
+              "rgba(250, 192, 19, 0.8)",
+              "rgba(253, 135, 135, 0.8)",
             ],
-          }}
-          options={{
-            plugins: {
-              title: {
-                text: "Revenue Source",
-              },
-            },
-          }}
-        />
-      </div>
+            borderRadius: 5,
+          },
+        ],
+      }}
+      options={{
+        plugins: {
+          title: {
+            text: "Revenue Source",
+          },
+        },
+      }}
+    />
+  </div>
 
-      <div className="dataCard categoryCard">
-        <Doughnut
-          data={{
-            labels: sourceData.map((data) => data.label),
-            datasets: [
-              {
-                label: "Count",
-                data: sourceData.map((data) => data.value),
-                backgroundColor: [
-                  "rgba(43, 63, 229, 0.8)",
-                  "rgba(250, 192, 19, 0.8)",
-                  "rgba(253, 135, 135, 0.8)",
-                ],
-                borderColor: [
-                  "rgba(43, 63, 229, 0.8)",
-                  "rgba(250, 192, 19, 0.8)",
-                  "rgba(253, 135, 135, 0.8)",
-                ],
-              },
+  <div className="dataCard categoryCard"
+    style={{  
+      height: `500px`, 
+      width: `500px`,
+      position: 'relative'
+    }}
+  >
+    <Doughnut
+      data={{
+        labels: sourceData.map((data) => data.label),
+        datasets: [
+          {
+            label: "Count",
+            data: sourceData.map((data) => data.value),
+            backgroundColor: [
+              "rgba(43, 63, 229, 0.8)",
+              "rgba(250, 192, 19, 0.8)",
+              "rgba(253, 135, 135, 0.8)",
             ],
-          }}
-          options={{
-            plugins: {
-              title: {
-                text: "Revenue Sources",
-              },
-            },
-          }}
-        />
-      </div>
+            borderColor: [
+              "rgba(43, 63, 229, 0.8)",
+              "rgba(250, 192, 19, 0.8)",
+              "rgba(253, 135, 135, 0.8)",
+            ],
+          },
+        ],
+      }}
+    />
+  </div>
+</div>
     </div>
   );
 };
