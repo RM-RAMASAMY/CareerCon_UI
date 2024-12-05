@@ -27,6 +27,7 @@ import MyCompanyTab from './components/MyCompanyTab';
 import NotificationPanel from './components/NotificationPanel';
 import { peopleService } from './services/peopleService';
 import './App.css';
+import {UserAnalytics} from './services/UserAnalytics';
 
 function MainContent() {
   const navigate = useNavigate();
@@ -72,6 +73,9 @@ function MainContent() {
       case 6:
         navigate('/mycompany');
         break;
+        case 7:
+          navigate('/UserAnalytics');
+          break;
       default:
         navigate('/');
     }
@@ -97,6 +101,9 @@ function MainContent() {
         break;
       case '/mycompany':
         setCurrentTab(6);
+        break;
+      case '/UserAnalytics':
+        setCurrentTab(7);
         break;
       default:
         if (location.pathname.startsWith('/company/')) {
@@ -137,6 +144,7 @@ function MainContent() {
             <Tab label="People" />
             <Tab label="Profile" />
             {isRecruiter && <Tab label="My Company" />}
+            <Tab label="UserAnalytics" />
           </Tabs>
         </Box>
 
@@ -151,6 +159,7 @@ function MainContent() {
             <Route path="/person/:id" element={<PersonProfile />} />
             <Route path="/profile" element={<ProfileTab />} />
             {isRecruiter && <Route path="/mycompany" element={<MyCompanyTab />} />}
+            <Route path="/UserAnalytics" element={<UserAnalytics />} />
           </Routes>
         </Box>
       </Box>
